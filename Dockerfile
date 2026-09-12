@@ -18,4 +18,5 @@ RUN php artisan storage:link || true
 
 EXPOSE 80
 
-CMD php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=80
+# ទុកត្រឹមតែ command សម្រាប់រ៉ាន់ Server ប៉ុណ្ណោះ
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
