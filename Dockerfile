@@ -16,6 +16,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN php artisan storage:link || true
 
-EXPOSE 8000
+EXPOSE 80
 
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=80
