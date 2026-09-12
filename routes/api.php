@@ -11,13 +11,28 @@ use App\Http\Controllers\StockOutDetailController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('throttle:5,1')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
 });
-
-Route::middleware('auth:sanctum')->group(function () {
+Route::get('/run-migrate-setup', function () {
+    try {
+        Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        return response()->json([
+            'status' => 'success', 
+            'message' => 'Database migrated and seeded successfully!'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error', 
+            'message' => $e->getMessage()
+            ], 500);
+            }
+            });
+            
+            Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', function (Request $request) {
         return apiResponse($request->user()->fresh(), 200, 'get authenticated user successfully');
     });
