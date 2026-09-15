@@ -36,6 +36,19 @@ Route::get('/run-migrate-setup', function () {
     Route::get('/me', function (Request $request) {
         return apiResponse($request->user()->fresh(), 200, 'get authenticated user successfully');
     });
+    // បន្ថែម GET /user និង GET /profile ដើម្បីឆ្លើយតបទៅ useAccountProfile.js
+    Route::get('/user', function (Request $request) {
+        return apiResponse($request->user()->fresh(), 200, 'get authenticated user successfully');
+    });
+
+    Route::get('/profile', function (Request $request) {
+        return apiResponse($request->user()->fresh(), 200, 'get authenticated user successfully');
+    });
+
+    Route::get('/me', function (Request $request) {
+        return apiResponse($request->user()->fresh(), 200, 'get authenticated user successfully');
+    });
+
     Route::post('/me', [UserController::class, 'updateProfile']);
     Route::post('/profile', [UserController::class, 'updateProfile']);
     Route::post('/logout', [UserController::class, 'logout']);

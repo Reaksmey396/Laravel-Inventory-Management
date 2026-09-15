@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://imsfront.is-great.net'],
 
     'allowed_origins_patterns' => [],
 
@@ -30,5 +30,4 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => false,
-
 ];
